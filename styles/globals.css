@@ -1,16 +1,35 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+.listado-productos {
+  background-color: #f3f3f3;
+}
+.contenedor {
+  max-width: 1200px;
+  width: 95%;
+  padding: 5rem 0;
+  margin: 0 auto;
+}
+.bg-white {
+  background-color: #fff;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.app-header {
+  border-bottom: 2px solid var(--gris3);
+  padding: 1rem 0;
 }
 
-* {
-  box-sizing: border-box;
+.user-actions-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-user-name {
+  margin-right: 2rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-form {
+  position: relative;
 }
