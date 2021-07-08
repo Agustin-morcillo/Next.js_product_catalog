@@ -1,7 +1,11 @@
 import React from "react"
 import Link from "next/link"
 
-import { HeaderContainer, Logo, Button } from "../../styles/theme/Header-theme"
+import {
+  HeaderContainer,
+  Logo,
+  Button,
+} from "/styles/theme/layout/Header-theme"
 import SearchBar from "../ui/SearchBar"
 import NavBar from "./NavBar"
 

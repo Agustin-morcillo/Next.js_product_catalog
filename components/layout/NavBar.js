@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 
-import { Nav } from "../../styles/theme/NavBar-theme"
+import { Nav } from "/styles/theme/layout/NavBar-theme"
 
 export default function NavBar() {
   return (
