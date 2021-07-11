@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import Link from "next/link"
+
+import FirebaseContext from "/firebase/context"
 
 import { Nav } from "/styles/theme/layout/NavBar-theme"
 
 export default function NavBar() {
+  const { user } = useContext(FirebaseContext)
   return (
     <Nav>
       <Link href="/">
@@ -14,9 +17,11 @@ export default function NavBar() {
         <a>Polulares</a>
       </Link>
 
-      <Link href="/create-product">
-        <a>Nuevo Producto</a>
-      </Link>
+      {user && (
+        <Link href="/create-product">
+          <a>Nuevo Producto</a>
+        </Link>
+      )}
     </Nav>
   )
 }

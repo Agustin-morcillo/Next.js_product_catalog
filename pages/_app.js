@@ -1,11 +1,15 @@
-import "/styles/globals.css"
-import FirebaseContext from "/firebase/context"
 import firebase from "/firebase/firebase"
-import Layout from "../components/layout/Layout"
+import useAuth from "/hooks/useAuth"
+import FirebaseContext from "/firebase/context"
+
+import "/styles/globals.css"
+import Layout from "/components/layout/Layout"
 
 function MyApp({ Component, pageProps }) {
+  const user = useAuth()
+
   return (
-    <FirebaseContext.Provider value={{ firebase }}>
+    <FirebaseContext.Provider value={{ firebase, user }}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

@@ -1,4 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
+import Router from "next/router"
+
+import firebase from "/firebase/firebase"
+import validateRegister from "/validations/validateRegister"
+import useFormValidation from "/hooks/useFormValidation"
+
 import {
   Form,
   InputContainer,
@@ -6,18 +12,23 @@ import {
   SubmitButton,
 } from "/styles/theme/Form-theme"
 
-import useFormValidation from "/hooks/useFormValidation"
-import validateRegister from "/validations/validateRegister"
-
 export default function Register() {
+  const [firebaseError, setFirebaseError] = useState(null)
+
   const INITIAL_STATE = {
     username: "",
     email: "",
     password: "",
   }
 
-  const registerUser = () => {
-    console.log("registrando....")
+  const registerUser = async () => {
+    try {
+      await firebase.register(username, email, password)
+      return Router.push("/")
+    } catch (error) {
+      console.error("Hubo un error al crear el usuario", error)
+      return setFirebaseError("El email ingresado ya se encuentra en uso")
+    }
   }
 
   const { values, errors, handleSubmit, handleChange } = useFormValidation(
@@ -55,6 +66,7 @@ export default function Register() {
             onChange={handleChange}
           />
           {errors.email && <Error>{errors.email}</Error>}
+          {firebaseError && !errors.email && <Error>{firebaseError}</Error>}
         </InputContainer>
 
         <InputContainer>
