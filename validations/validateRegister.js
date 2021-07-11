@@ -4,6 +4,7 @@ const regExp = {
 
 export default function validateRegister(values) {
   const { username, email, password } = values
+
   let errors = {}
 
   if (!username) {

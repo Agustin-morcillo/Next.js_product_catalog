@@ -44,8 +44,8 @@ export const Error = styled.p`
   font-weight: 700;
   font-size: 1.2rem;
   text-align: center;
-  background-color: rgb(250, 161, 188);
-  color: #ff0000;
+  background-color: #f2dede;
+  color: #a94442;
   width: 100%;
   margin: 0.8rem 0 0 0;
   padding: 0.5rem;

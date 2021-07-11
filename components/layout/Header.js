@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import Link from "next/link"
+
+import FirebaseContext from "/firebase/context"
 
 import {
   HeaderContainer,
@@ -10,7 +12,8 @@ import SearchBar from "../ui/SearchBar"
 import NavBar from "./NavBar"
 
 export default function Header() {
-  const user = false
+  const { user, firebase } = useContext(FirebaseContext)
+
   return (
     <header className="app-header">
       <HeaderContainer>
@@ -26,9 +29,11 @@ export default function Header() {
         <div className="user-actions-container">
           {user ? (
             <>
-              <p className="header-user-name">Hola: Agustin</p>
+              <p className="header-user-name">Hola: {user.displayName}</p>
               <Link href="/" passHref>
-                <Button bgColor>Cerrar Sesión</Button>
+                <Button bgColor onClick={() => firebase.logout()}>
+                  Cerrar Sesión
+                </Button>
               </Link>
             </>
           ) : (
