@@ -1,6 +1,6 @@
 import React from "react"
 
-import { SearchInput, SubmitButton } from "/styles/theme/layout/SearchBar-theme"
+import { SearchInput, SubmitButton } from "/styles/theme/ui/SearchBar-theme"
 
 export default function SearchBar() {
   return (
