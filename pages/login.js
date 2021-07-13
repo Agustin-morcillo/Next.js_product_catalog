@@ -44,7 +44,7 @@ export default function Login() {
         <InputContainer>
           <label htmlFor="login-email">Email</label>
           <input
-            type="text"
+            type="email"
             id="login-email"
             placeholder="Tu Email"
             name="email"
