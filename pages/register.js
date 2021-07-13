@@ -58,7 +58,7 @@ export default function Register() {
         <InputContainer>
           <label htmlFor="register-email">Email</label>
           <input
-            type="text"
+            type="email"
             id="register-email"
             placeholder="Tu Email"
             name="email"
