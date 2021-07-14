@@ -1,4 +1,5 @@
 import React from "react"
+import Link from "next/link"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import { es } from "date-fns/locale"
 
@@ -23,7 +24,9 @@ export default function Product({ product }) {
           <Image src={image} alt="" />
         </div>
         <div>
-          <Name>{name}</Name>
+          <Link href="/products/[id]" as={`/products/${id}`} passHref>
+            <Name>{name}</Name>
+          </Link>
           <Description>{description}</Description>
 
           <Comments>

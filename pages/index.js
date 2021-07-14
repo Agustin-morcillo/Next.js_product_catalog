@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react"
 
 import FirebaseContext from "/firebase/context"
 
-import Product from "/components/Product"
+import Product from "/components/layout/Product"
 import Spinner from "/components/ui/Spinner"
 
 export default function Home() {
