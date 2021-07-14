@@ -44,7 +44,6 @@ export default function CreateProduct() {
       .getDownloadURL()
       .then((url) => {
         setImgUrl(url)
-        console.log(url)
       })
   }
 
