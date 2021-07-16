@@ -50,6 +50,27 @@
   font-size: 18px;
 }
 
+.comment {
+  margin: 2rem 0;
+}
+
+.votes {
+  text-align: center;
+}
+
+.comment-box {
+  margin-top: 5rem;
+}
+
+.comment-list {
+  border: 1px solid #e1e1e1;
+  padding: 2rem;
+}
+
+.comment-by {
+  font-weight: bold;
+}
+
 .sk-chase {
   width: 60px;
   height: 60px;

@@ -12,6 +12,7 @@ import {
   Error,
   SubmitButton,
 } from "/styles/theme/Form-theme"
+import PageNotFound from "/components/layout/PageNotFound"
 
 export default function CreateProduct() {
   const [imgName, setImgName] = useState("")
@@ -64,10 +65,6 @@ export default function CreateProduct() {
   const { name, company, url, description } = values
 
   async function createProduct() {
-    if (!user) {
-      return Router.push("/")
-    }
-
     const product = {
       name,
       company,
@@ -75,7 +72,12 @@ export default function CreateProduct() {
       url,
       description,
       votes: 0,
+      votedBy: [],
       comments: [],
+      createdBy: {
+        id: user.uid,
+        name: user.displayName,
+      },
       createdOn: Date.now(),
     }
 
@@ -86,6 +88,10 @@ export default function CreateProduct() {
     }
 
     return Router.push("/")
+  }
+
+  if (!user) {
+    return <PageNotFound message="No puedes acceder a esta página" />
   }
 
   return (
