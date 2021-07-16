@@ -3,11 +3,8 @@ import Link from "next/link"
 
 import FirebaseContext from "/firebase/context"
 
-import {
-  HeaderContainer,
-  Logo,
-  Button,
-} from "/styles/theme/layout/Header-theme"
+import { HeaderContainer, Logo } from "/styles/theme/layout/Header-theme"
+import { Button } from "/styles/globalStyle"
 import SearchBar from "../ui/SearchBar"
 import NavBar from "./NavBar"
 

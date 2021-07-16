@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
     :root {
@@ -52,3 +52,23 @@ const GlobalStyle = createGlobalStyle`
     }`
 
 export default GlobalStyle
+
+export const Button = styled.a`
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid #d1d1d1;
+  padding: 0.8rem 2rem;
+  margin-right: 1rem;
+  text-align: center;
+  background-color: ${(props) => (props.bgColor ? "#DA552F" : "white")};
+  color: ${(props) => (props.bgColor ? "white" : "#000")};
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+`

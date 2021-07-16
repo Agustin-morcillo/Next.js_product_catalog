@@ -1,43 +1,13 @@
-import React, { useState, useEffect, useContext } from "react"
+import React from "react"
 
-import FirebaseContext from "/firebase/context"
+import useProducts from "/hooks/useProducts"
 
 import Product from "/components/layout/Product"
 import Spinner from "/components/ui/Spinner"
 
 export default function Home() {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
+  const { products, loading } = useProducts("createdBy")
 
-  const { firebase } = useContext(FirebaseContext)
-
-  useEffect(() => {
-    let mounted = true
-    const getProducts = () => {
-      firebase.db
-        .collection("products")
-        .orderBy("createdOn", "desc")
-        .onSnapshot(handleSnapshot)
-    }
-    if (mounted) {
-      setLoading(true)
-      getProducts()
-    }
-
-    return () => (mounted = false)
-    // eslint-disable-next-line
-  }, [])
-
-  function handleSnapshot(snapshot) {
-    const productsDb = snapshot.docs.map((doc) => {
-      return {
-        id: doc.id,
-        ...doc.data(),
-      }
-    })
-    setProducts(productsDb)
-    setLoading(false)
-  }
   return (
     <>
       <div>
