@@ -26,3 +26,21 @@ export const ProductOwner = styled.p`
   display: inline-block;
   text-align: center;
 `
+
+export const DeleteButton = styled.a`
+  display: block;
+  width: 40%;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid #d1d1d1;
+  padding: 0.8rem 2rem;
+  margin-bottom: 5px;
+  text-align: center;
+  background-color: #ea0000;
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f34336;
+  }
+`

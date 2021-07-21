@@ -12,6 +12,7 @@ import {
   Title,
   ProductImage,
   ProductOwner,
+  DeleteButton,
 } from "/styles/theme/layout/[id]-theme"
 import PageNotFound from "/components/layout/PageNotFound"
 import Spinner from "/components/ui/Spinner"
@@ -20,7 +21,9 @@ export default function Product() {
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
   const [checkDB, setcheckDB] = useState(true)
-  const [userComment, setUserComment] = useState({})
+  const [userComment, setUserComment] = useState({
+    comment: "",
+  })
   const [error, setError] = useState(false)
 
   const { firebase, user } = useContext(FirebaseContext)
@@ -129,6 +132,10 @@ export default function Product() {
   const handleCommentSubmit = async (e) => {
     e.preventDefault()
 
+    if (!userComment.comment.trim()) {
+      return
+    }
+
     userComment.userId = user.uid
     userComment.username = user.displayName
 
@@ -148,7 +155,11 @@ export default function Product() {
       comments: newComments,
     })
 
-    return setcheckDB(true)
+    setcheckDB(true)
+
+    return setUserComment({
+      comment: "",
+    })
   }
 
   /* Delete Product */
@@ -179,18 +190,21 @@ export default function Product() {
           <p>{description}</p>
 
           {user && productOwner(user.uid) && (
-            <Button onClick={deleteProduct}>Eliminar</Button>
+            <DeleteButton onClick={deleteProduct}>
+              Eliminar Producto
+            </DeleteButton>
           )}
 
           {user && (
             <>
-              <h2>Agrega tu comentario</h2>
+              <h2 className="add-comment">Agrega tu comentario</h2>
               <form onSubmit={handleCommentSubmit}>
                 <InputContainer>
                   <input
                     type="text"
                     name="comment"
                     onChange={handleCommentChange}
+                    value={userComment.comment}
                   />
                 </InputContainer>
                 <SubmitButton>Agregar comentario</SubmitButton>
