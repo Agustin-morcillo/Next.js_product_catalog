@@ -1,12 +1,33 @@
 import React, { useState } from "react"
+import { useRouter } from "next/router"
 
 import { SearchInput, SubmitButton } from "/styles/theme/ui/SearchBar-theme"
 
 export default function SearchBar() {
   const [userSearch, setUserSearch] = useState("")
+
+  const router = useRouter()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!userSearch.trim()) {
+      return
+    }
+
+    router.push({
+      pathname: "search",
+      query: { q: userSearch },
+    })
+  }
+
   return (
-    <form className="search-bar-form">
-      <SearchInput type="text" placeholder="Buscar Productos" />
+    <form className="search-bar-form" onSubmit={handleSubmit}>
+      <SearchInput
+        type="text"
+        placeholder="Buscar Productos"
+        onChange={(e) => setUserSearch(e.target.value.trim())}
+      />
       <SubmitButton type="submit"></SubmitButton>
     </form>
   )
