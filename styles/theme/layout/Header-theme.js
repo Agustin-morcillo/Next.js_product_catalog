@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   margin: 0 auto;
   @media (min-width: 768px) {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 `

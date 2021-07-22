@@ -8,20 +8,22 @@ import { Nav } from "/styles/theme/layout/NavBar-theme"
 export default function NavBar() {
   const { user } = useContext(FirebaseContext)
   return (
-    <Nav>
-      <Link href="/">
-        <a>Inicio</a>
-      </Link>
-
-      <Link href="/popular">
-        <a>Polulares</a>
-      </Link>
-
-      {user && (
-        <Link href="/create-product">
-          <a>Nuevo Producto</a>
+    <div className="nav-container">
+      <Nav>
+        <Link href="/">
+          <a>Inicio</a>
         </Link>
-      )}
-    </Nav>
+
+        <Link href="/popular">
+          <a>Polulares</a>
+        </Link>
+
+        {user && (
+          <Link href="/create-product">
+            <a>Nuevo Producto</a>
+          </Link>
+        )}
+      </Nav>
+    </div>
   )
 }

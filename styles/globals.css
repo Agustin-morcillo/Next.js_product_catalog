@@ -1,3 +1,16 @@
+@media (max-width: 700px) {
+  .nav-container {
+    position: absolute;
+    top: 120px;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .app-header {
+    height: 120px;
+  }
+}
+
 /* Generales */
 .section-title {
   text-align: center;
@@ -33,7 +46,6 @@
 
 .app-header {
   border-bottom: 2px solid var(--gris3);
-  padding: 1rem 0;
 }
 
 .user-actions-container {
@@ -52,6 +64,19 @@
 
 .search-bar-form {
   position: relative;
+}
+
+@media (max-width: 1000px) {
+  .user-actions-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .header-left {
+    width: 100%;
+    margin-top: 50px;
+  }
 }
 
 /* Pagina de producto */
