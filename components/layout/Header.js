@@ -3,7 +3,13 @@ import Link from "next/link"
 
 import FirebaseContext from "/firebase/context"
 
-import { HeaderContainer, Logo } from "/styles/theme/layout/Header-theme"
+import {
+  HeaderContainer,
+  Logo,
+  AppHeader,
+  HeaderLeft,
+  UserActionHeader,
+} from "/styles/theme/layout/Header-theme"
 import { Button } from "/styles/globalStyle"
 import SearchBar from "../ui/SearchBar"
 import NavBar from "./NavBar"
@@ -12,18 +18,18 @@ export default function Header() {
   const { user, firebase } = useContext(FirebaseContext)
 
   return (
-    <header className="app-header">
+    <AppHeader>
       <HeaderContainer>
-        <div className="header-left">
+        <HeaderLeft>
           <Link href="/" passHref>
             <Logo>P</Logo>
           </Link>
 
           <SearchBar />
           <NavBar />
-        </div>
+        </HeaderLeft>
 
-        <div className="user-actions-container">
+        <UserActionHeader>
           {user ? (
             <>
               <p className="header-user-name">Hola: {user.displayName}</p>
@@ -44,8 +50,8 @@ export default function Header() {
               </Link>
             </>
           )}
-        </div>
+        </UserActionHeader>
       </HeaderContainer>
-    </header>
+    </AppHeader>
   )
 }

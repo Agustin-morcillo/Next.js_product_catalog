@@ -5,6 +5,7 @@ import firebase from "/firebase/firebase"
 import validateLogin from "/validations/validateLogin"
 import useFormValidation from "/hooks/useFormValidation"
 
+import { SectionTitle } from "/styles/globalStyle"
 import {
   Form,
   InputContainer,
@@ -39,7 +40,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className="section-title">Iniciar Sesión</h1>
+      <SectionTitle>Iniciar Sesión</SectionTitle>
       <Form noValidate onSubmit={handleSubmit}>
         <InputContainer>
           <label htmlFor="login-email">Email</label>

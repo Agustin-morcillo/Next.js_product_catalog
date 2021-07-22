@@ -72,3 +72,29 @@ export const Button = styled.a`
     cursor: pointer;
   }
 `
+
+export const BoldText = styled.span`
+  font-weight: bold;
+`
+
+export const ProductList = styled.div`
+  background-color: #f3f3f3;
+  width: 100%;
+`
+
+export const Container = styled.div`
+  max-width: 1200px;
+  width: 95%;
+  padding: 5rem 0;
+  margin: 0 auto;
+`
+
+export const SectionTitle = styled.h1`
+  text-align: center;
+  margin-top: 5rem;
+`
+
+export const LoadingText = styled.p`
+  text-align: center;
+  font-size: 18px;
+`

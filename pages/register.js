@@ -5,6 +5,7 @@ import firebase from "/firebase/firebase"
 import validateRegister from "/validations/validateRegister"
 import useFormValidation from "/hooks/useFormValidation"
 
+import { SectionTitle } from "/styles/globalStyle"
 import {
   Form,
   InputContainer,
@@ -40,7 +41,7 @@ export default function Register() {
 
   return (
     <div>
-      <h1 className="section-title">Crear Cuenta</h1>
+      <SectionTitle>Crear Cuenta</SectionTitle>
       <Form noValidate onSubmit={handleSubmit}>
         <InputContainer>
           <label htmlFor="register-username">Nombre</label>

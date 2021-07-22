@@ -3,25 +3,27 @@ import Link from "next/link"
 
 import FirebaseContext from "/firebase/context"
 
-import { Nav } from "/styles/theme/layout/NavBar-theme"
+import { Nav, NavContainer } from "/styles/theme/layout/NavBar-theme"
 
 export default function NavBar() {
   const { user } = useContext(FirebaseContext)
   return (
-    <Nav>
-      <Link href="/">
-        <a>Inicio</a>
-      </Link>
-
-      <Link href="/popular">
-        <a>Polulares</a>
-      </Link>
-
-      {user && (
-        <Link href="/create-product">
-          <a>Nuevo Producto</a>
+    <NavContainer>
+      <Nav>
+        <Link href="/">
+          <a>Inicio</a>
         </Link>
-      )}
-    </Nav>
+
+        <Link href="/popular">
+          <a>Polulares</a>
+        </Link>
+
+        {user && (
+          <Link href="/create-product">
+            <a>Nuevo Producto</a>
+          </Link>
+        )}
+      </Nav>
+    </NavContainer>
   )
 }

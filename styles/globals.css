@@ -1,14 +1,3 @@
-.products-list {
-  background-color: #f3f3f3;
-}
-
-.container {
-  max-width: 1200px;
-  width: 95%;
-  padding: 5rem 0;
-  margin: 0 auto;
-}
-
 .bg-white {
   background-color: #fff;
 }
@@ -17,63 +6,48 @@
   text-align: center;
 }
 
-.app-header {
-  border-bottom: 2px solid var(--gris3);
-  padding: 1rem 0;
-}
-
-.user-actions-container {
-  display: flex;
-  align-items: center;
-}
-
+/* Header */
 .header-user-name {
   margin-right: 2rem;
 }
 
-.header-left {
+/* Pagina de producto */
+
+.btn-container {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.search-bar-form {
-  position: relative;
-}
-
-.section-title {
-  text-align: center;
-  margin-top: 5rem;
-}
-
-.loading {
-  text-align: center;
-  font-size: 18px;
+.action-btn {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .add-comment {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
-.comment {
+.comment-title {
   margin: 2rem 0;
-}
-
-.votes {
-  text-align: center;
-}
-
-.comment-box {
-  margin-top: 5rem;
 }
 
 .comment-list {
   border: 1px solid #e1e1e1;
   padding: 2rem;
+  margin: 10px 0 20px 0;
+  list-style: none;
 }
 
-.comment-by {
-  font-weight: bold;
+@media (max-width: 768px) {
+  .btn-container,
+  .action-btn {
+    flex-direction: column;
+    align-items: center;
+  }
 }
+
+/* Spinner */
 
 .sk-chase {
   width: 60px;

@@ -5,14 +5,19 @@ import { es } from "date-fns/locale"
 
 import FirebaseContext from "/firebase/context"
 
-import { Button } from "/styles/globalStyle"
+import { BoldText, LoadingText } from "/styles/globalStyle"
 import { InputContainer, SubmitButton } from "/styles/theme/Form-theme"
 import {
+  SectionContainer,
   ProductContainer,
+  ImgContainer,
+  MainInfoContainer,
   Title,
   ProductImage,
   ProductOwner,
-  DeleteButton,
+  Button,
+  CommentSection,
+  CommentContainer,
 } from "/styles/theme/layout/[id]-theme"
 import PageNotFound from "/components/layout/PageNotFound"
 import Spinner from "/components/ui/Spinner"
@@ -75,7 +80,7 @@ export default function Product() {
     return (
       <>
         <Spinner />
-        <p className="loading">Cargando...</p>
+        <LoadingText>Cargando...</LoadingText>
       </>
     )
   }
@@ -173,78 +178,93 @@ export default function Product() {
   }
 
   return (
-    <div className="container">
-      <Title>{name}</Title>
-
+    <SectionContainer>
       <ProductContainer>
-        <div>
+        <ImgContainer>
+          <ProductImage src={image} alt="" />
+        </ImgContainer>
+
+        <MainInfoContainer>
+          <Title>{name}</Title>
+          <aside className="btn-container">
+            <Button target="_blank" href={url} bgColor="#DA552F">
+              Visitar Página
+            </Button>
+
+            {user && (
+              <Button onClick={voteProduct} color="black" ml="10px">
+                &#9650; Votar {votes}
+              </Button>
+            )}
+          </aside>
+
+          <p>{description}</p>
+
           <p>
-            Publicado hace:{" "}
+            <BoldText> Publicado hace:</BoldText>{" "}
             {createdOn &&
               formatDistanceToNow(new Date(createdOn), { locale: es })}
           </p>
+
           <p>
-            Por: {createdBy && createdBy.name} de {company}
+            <BoldText> Por: </BoldText>
+            {createdBy && createdBy.name} de {company}
           </p>
-          <ProductImage src={image} alt="" />
-          <p>{description}</p>
 
           {user && productOwner(user.uid) && (
-            <DeleteButton onClick={deleteProduct}>
-              Eliminar Producto
-            </DeleteButton>
+            <div className="action-btn">
+              <Button onClick={deleteProduct} bgColor="#ea0000" hover="#f34336">
+                Eliminar
+              </Button>
+
+              <Button onClick={deleteProduct} bgColor="#DA552F" ml="10px">
+                Editar
+              </Button>
+            </div>
           )}
+        </MainInfoContainer>
 
-          {user && (
-            <>
-              <h2 className="add-comment">Agrega tu comentario</h2>
-              <form onSubmit={handleCommentSubmit}>
-                <InputContainer>
-                  <input
-                    type="text"
-                    name="comment"
-                    onChange={handleCommentChange}
-                    value={userComment.comment}
-                  />
-                </InputContainer>
-                <SubmitButton>Agregar comentario</SubmitButton>
-              </form>
-            </>
-          )}
+        <CommentSection>
+          <CommentContainer>
+            {user && (
+              <>
+                <h2 className="add-comment">Agrega tu comentario</h2>
+                <form onSubmit={handleCommentSubmit}>
+                  <InputContainer>
+                    <input
+                      type="text"
+                      name="comment"
+                      onChange={handleCommentChange}
+                      value={userComment.comment}
+                    />
+                  </InputContainer>
+                  <SubmitButton>Agregar comentario</SubmitButton>
+                </form>
+              </>
+            )}
 
-          <h2 className="comment">Comentarios</h2>
-          {comments.length < 1 ? (
-            <p>Aún no hay comentarios.</p>
-          ) : (
-            <ul>
-              {comments &&
-                comments.map((comment, i) => (
-                  <li key={i} className="comment-list">
-                    <p>{comment.comment}</p>
-                    <p>
-                      Escrito por{" "}
-                      <span className="comment-by">{comment.username}</span>
-                    </p>
-                    {productOwner(comment.userId) && (
-                      <ProductOwner>Autor</ProductOwner>
-                    )}
-                  </li>
-                ))}
-            </ul>
-          )}
-        </div>
-
-        <aside>
-          <Button target="_blank" bgColor href={url}>
-            Visitar URL
-          </Button>
-
-          <div className="comment-box">
-            <p className="votes">{votes} votos</p>
-            {user && <Button onClick={voteProduct}>Votar</Button>}
-          </div>
-        </aside>
+            <h2 className="comment-title">Comentarios ({comments.length}) </h2>
+            {comments.length < 1 ? (
+              <p>Aún no hay comentarios.</p>
+            ) : (
+              <ul>
+                {comments &&
+                  comments.map((comment, i) => (
+                    <li key={i} className="comment-list">
+                      <p> &quot;{comment.comment}&quot;</p>
+                      <p>
+                        Escrito por <BoldText>{comment.username}</BoldText>
+                      </p>
+                      {productOwner(comment.userId) && (
+                        <ProductOwner>Autor</ProductOwner>
+                      )}
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </CommentContainer>
+        </CommentSection>
       </ProductContainer>
-    </div>
+    </SectionContainer>
   )
 }

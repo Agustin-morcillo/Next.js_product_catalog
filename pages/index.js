@@ -2,6 +2,7 @@ import React from "react"
 
 import useProducts from "/hooks/useProducts"
 
+import { ProductList, Container, LoadingText } from "/styles/globalStyle"
 import Product from "/components/layout/Product"
 import Spinner from "/components/ui/Spinner"
 
@@ -11,12 +12,12 @@ export default function Home() {
   return (
     <>
       <div>
-        <div className="products-list">
-          <div className="container">
+        <ProductList>
+          <Container>
             {loading && (
               <>
                 <Spinner />
-                <p className="loading">Cargando...</p>
+                <LoadingText>Cargando...</LoadingText>
               </>
             )}
 
@@ -29,8 +30,8 @@ export default function Home() {
                 ))}
               </ul>
             )}
-          </div>
-        </div>
+          </Container>
+        </ProductList>
       </div>
     </>
   )
