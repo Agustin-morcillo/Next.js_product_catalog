@@ -1,5 +1,12 @@
-.products-list {
-  background-color: #f3f3f3;
+/* Generales */
+.section-title {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
 }
 
 .container {
@@ -9,6 +16,11 @@
   margin: 0 auto;
 }
 
+.products-list {
+  background-color: #f3f3f3;
+  width: 100%;
+}
+
 .bg-white {
   background-color: #fff;
 }
@@ -16,6 +28,8 @@
 .no-product {
   text-align: center;
 }
+
+/* Header */
 
 .app-header {
   border-bottom: 2px solid var(--gris3);
@@ -40,14 +54,46 @@
   position: relative;
 }
 
-.section-title {
-  text-align: center;
-  margin-top: 5rem;
+/* Pagina de producto */
+.pd-main-container {
+  background-color: #f3f3f3;
 }
 
-.loading {
-  text-align: center;
-  font-size: 18px;
+.product-container {
+  width: 768px;
+  padding: 5rem 0;
+  margin: 0 auto;
+}
+
+.img-container {
+  width: 50%;
+}
+
+.info-container {
+  width: 50%;
+  padding-left: 20px;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-btn {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comment-main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.comment-container {
+  width: 90%;
+  padding: 0;
 }
 
 .add-comment {
@@ -58,22 +104,61 @@
   margin: 2rem 0;
 }
 
-.votes {
-  text-align: center;
-}
-
-.comment-box {
-  margin-top: 5rem;
-}
-
 .comment-list {
   border: 1px solid #e1e1e1;
   padding: 2rem;
+  margin: 10px 0 20px 0;
+  list-style: none;
 }
 
 .comment-by {
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .product-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .img-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .info-container {
+    width: 100%;
+    padding-right: 20px;
+  }
+
+  .btn-container,
+  .action-btn {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-comment-c {
+    position: relative;
+    bottom: 80px;
+  }
+  .comment-list {
+    position: relative;
+    right: 39px;
+    margin: 0;
+    margin-top: 15px;
+    width: 96%;
+  }
+}
+
+@media (max-width: 480px) {
+  .comment-list {
+    width: 90%;
+  }
+}
+
+/* Spinner */
 
 .sk-chase {
   width: 60px;

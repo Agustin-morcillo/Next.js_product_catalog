@@ -2,19 +2,25 @@ import styled from "styled-components"
 
 export const Title = styled.h1`
   text-align: center;
-  margin-top: 5rem;
+  padding: 0;
+  margin: 20px 0 20px 0;
 `
 
 export const ProductContainer = styled.div`
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    column-gap: 2rem;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
 `
 
 export const ProductImage = styled.img`
-  max-width: 100%;
+  width: 100%;
+  margin-top: 80px;
+  padding-left: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    margin: 0;
+  }
 `
 
 export const ProductOwner = styled.p`
@@ -27,20 +33,30 @@ export const ProductOwner = styled.p`
   text-align: center;
 `
 
-export const DeleteButton = styled.a`
+export const Button = styled.a`
   display: block;
-  width: 40%;
+  width: auto;
   font-weight: 700;
   text-transform: uppercase;
   border: 1px solid #d1d1d1;
   padding: 0.8rem 2rem;
   margin-bottom: 5px;
   text-align: center;
-  background-color: #ea0000;
-  color: #fff;
+  background-color: ${(props) => props.bgColor && props.bgColor};
+  color: ${(props) => (props.color ? props.color : "#fff")};
+  margin-left: ${(props) => props.ml && props.ml};
 
   &:hover {
     cursor: pointer;
-    background-color: #f34336;
+    background-color: ${(props) => props.hover && props.hover};
+  }
+
+  @media (max-width: 768px) {
+    margin: 0px 0 15px 0;
+    width: 40%;
+  }
+
+  @media (max-width: 480px) {
+    width: 70%;
   }
 `
