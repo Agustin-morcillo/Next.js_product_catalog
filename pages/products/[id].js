@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import { es } from "date-fns/locale"
@@ -217,9 +218,15 @@ export default function Product() {
                 Eliminar
               </Button>
 
-              <Button onClick={deleteProduct} bgColor="#DA552F" ml="10px">
-                Editar
-              </Button>
+              <Link
+                href="/products/edit/[editProduct]"
+                as={`/products/edit/${id}`}
+                passHref
+              >
+                <Button bgColor="#DA552F" ml="10px">
+                  Editar
+                </Button>
+              </Link>
             </div>
           )}
         </MainInfoContainer>
