@@ -5,13 +5,19 @@ import { es } from "date-fns/locale"
 
 import FirebaseContext from "/firebase/context"
 
+import { BoldText, LoadingText } from "/styles/globalStyle"
 import { InputContainer, SubmitButton } from "/styles/theme/Form-theme"
 import {
+  SectionContainer,
   ProductContainer,
+  ImgContainer,
+  MainInfoContainer,
   Title,
   ProductImage,
   ProductOwner,
   Button,
+  CommentSection,
+  CommentContainer,
 } from "/styles/theme/layout/[id]-theme"
 import PageNotFound from "/components/layout/PageNotFound"
 import Spinner from "/components/ui/Spinner"
@@ -74,7 +80,7 @@ export default function Product() {
     return (
       <>
         <Spinner />
-        <p className="loading">Cargando...</p>
+        <LoadingText>Cargando...</LoadingText>
       </>
     )
   }
@@ -172,104 +178,93 @@ export default function Product() {
   }
 
   return (
-    <div className="pd-main-container">
-      <div className="product-container">
-        <ProductContainer>
-          <div className="img-container">
-            <ProductImage src={image} alt="" />
-          </div>
+    <SectionContainer>
+      <ProductContainer>
+        <ImgContainer>
+          <ProductImage src={image} alt="" />
+        </ImgContainer>
 
-          <div className="info-container">
-            <Title>{name}</Title>
-            <aside className="btn-container">
-              <Button target="_blank" href={url} bgColor="#DA552F">
-                Visitar Página
+        <MainInfoContainer>
+          <Title>{name}</Title>
+          <aside className="btn-container">
+            <Button target="_blank" href={url} bgColor="#DA552F">
+              Visitar Página
+            </Button>
+
+            {user && (
+              <Button onClick={voteProduct} color="black" ml="10px">
+                &#9650; Votar {votes}
+              </Button>
+            )}
+          </aside>
+
+          <p>{description}</p>
+
+          <p>
+            <BoldText> Publicado hace:</BoldText>{" "}
+            {createdOn &&
+              formatDistanceToNow(new Date(createdOn), { locale: es })}
+          </p>
+
+          <p>
+            <BoldText> Por: </BoldText>
+            {createdBy && createdBy.name} de {company}
+          </p>
+
+          {user && productOwner(user.uid) && (
+            <div className="action-btn">
+              <Button onClick={deleteProduct} bgColor="#ea0000" hover="#f34336">
+                Eliminar
               </Button>
 
-              {user && (
-                <Button onClick={voteProduct} color="black" ml="10px">
-                  &#9650; Votar {votes}
-                </Button>
-              )}
-            </aside>
-
-            <p>{description}</p>
-
-            <p>
-              <b> Publicado hace:</b>{" "}
-              {createdOn &&
-                formatDistanceToNow(new Date(createdOn), { locale: es })}
-            </p>
-
-            <p>
-              <b> Por: </b>
-              {createdBy && createdBy.name} de {company}
-            </p>
-
-            {user && productOwner(user.uid) && (
-              <div className="action-btn">
-                <Button
-                  onClick={deleteProduct}
-                  bgColor="#ea0000"
-                  hover="#f34336"
-                >
-                  Eliminar
-                </Button>
-
-                <Button onClick={deleteProduct} bgColor="#DA552F" ml="10px">
-                  Editar
-                </Button>
-              </div>
-            )}
-          </div>
-
-          <div className="comment-main-container">
-            <div className="comment-container">
-              {user && (
-                <>
-                  <h2 className="add-comment">Agrega tu comentario</h2>
-                  <form onSubmit={handleCommentSubmit}>
-                    <InputContainer>
-                      <input
-                        type="text"
-                        name="comment"
-                        onChange={handleCommentChange}
-                        value={userComment.comment}
-                      />
-                    </InputContainer>
-                    <SubmitButton>Agregar comentario</SubmitButton>
-                  </form>
-                </>
-              )}
-
-              <div className="user-comment-c">
-                <h2 className="comment">Comentarios ({comments.length}) </h2>
-                {comments.length < 1 ? (
-                  <p>Aún no hay comentarios.</p>
-                ) : (
-                  <ul>
-                    {comments &&
-                      comments.map((comment, i) => (
-                        <li key={i} className="comment-list">
-                          <p> &quot;{comment.comment}&quot;</p>
-                          <p>
-                            Escrito por{" "}
-                            <span className="comment-by">
-                              {comment.username}
-                            </span>
-                          </p>
-                          {productOwner(comment.userId) && (
-                            <ProductOwner>Autor</ProductOwner>
-                          )}
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </div>
+              <Button onClick={deleteProduct} bgColor="#DA552F" ml="10px">
+                Editar
+              </Button>
             </div>
-          </div>
-        </ProductContainer>
-      </div>
-    </div>
+          )}
+        </MainInfoContainer>
+
+        <CommentSection>
+          <CommentContainer>
+            {user && (
+              <>
+                <h2 className="add-comment">Agrega tu comentario</h2>
+                <form onSubmit={handleCommentSubmit}>
+                  <InputContainer>
+                    <input
+                      type="text"
+                      name="comment"
+                      onChange={handleCommentChange}
+                      value={userComment.comment}
+                    />
+                  </InputContainer>
+                  <SubmitButton>Agregar comentario</SubmitButton>
+                </form>
+              </>
+            )}
+
+            <h2 className="comment-title">Comentarios ({comments.length}) </h2>
+            {comments.length < 1 ? (
+              <p>Aún no hay comentarios.</p>
+            ) : (
+              <ul>
+                {comments &&
+                  comments.map((comment, i) => (
+                    <li key={i} className="comment-list">
+                      <p> &quot;{comment.comment}&quot;</p>
+                      <p>
+                        Escrito por <BoldText>{comment.username}</BoldText>
+                      </p>
+                      {productOwner(comment.userId) && (
+                        <ProductOwner>Autor</ProductOwner>
+                      )}
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </CommentContainer>
+        </CommentSection>
+      </ProductContainer>
+    </SectionContainer>
   )
 }

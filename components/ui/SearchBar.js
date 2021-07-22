@@ -1,7 +1,11 @@
 import React, { useState } from "react"
 import { useRouter } from "next/router"
 
-import { SearchInput, SubmitButton } from "/styles/theme/ui/SearchBar-theme"
+import {
+  SearchInput,
+  SubmitButton,
+  SearchForm,
+} from "/styles/theme/ui/SearchBar-theme"
 
 export default function SearchBar() {
   const [userSearch, setUserSearch] = useState("")
@@ -16,19 +20,19 @@ export default function SearchBar() {
     }
 
     router.push({
-      pathname: "search",
+      pathname: "/search",
       query: { q: userSearch },
     })
   }
 
   return (
-    <form className="search-bar-form" onSubmit={handleSubmit}>
+    <SearchForm onSubmit={handleSubmit}>
       <SearchInput
         type="text"
         placeholder="Buscar Productos"
         onChange={(e) => setUserSearch(e.target.value.trim())}
       />
       <SubmitButton type="submit"></SubmitButton>
-    </form>
+    </SearchForm>
   )
 }

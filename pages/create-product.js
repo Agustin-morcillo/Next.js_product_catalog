@@ -6,6 +6,7 @@ import FirebaseContext from "/firebase/context"
 import validateCreateProduct from "/validations/validateCreateProduct"
 import useFormValidation from "/hooks/useFormValidation"
 
+import { SectionTitle } from "/styles/globalStyle"
 import {
   Form,
   InputContainer,
@@ -96,7 +97,7 @@ export default function CreateProduct() {
 
   return (
     <div>
-      <h1 className="section-title">Nuevo Producto</h1>
+      <SectionTitle>Nuevo Producto</SectionTitle>
       <Form noValidate onSubmit={handleSubmit}>
         <fieldset>
           <legend>Información General</legend>

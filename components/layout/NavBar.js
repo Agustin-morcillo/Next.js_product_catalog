@@ -3,12 +3,12 @@ import Link from "next/link"
 
 import FirebaseContext from "/firebase/context"
 
-import { Nav } from "/styles/theme/layout/NavBar-theme"
+import { Nav, NavContainer } from "/styles/theme/layout/NavBar-theme"
 
 export default function NavBar() {
   const { user } = useContext(FirebaseContext)
   return (
-    <div className="nav-container">
+    <NavContainer>
       <Nav>
         <Link href="/">
           <a>Inicio</a>
@@ -24,6 +24,6 @@ export default function NavBar() {
           </Link>
         )}
       </Nav>
-    </div>
+    </NavContainer>
   )
 }
