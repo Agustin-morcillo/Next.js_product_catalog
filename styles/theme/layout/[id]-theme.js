@@ -36,7 +36,7 @@ export const ImgContainer = styled.div`
 
 export const ProductImage = styled.img`
   width: 100%;
-  margin-top: 80px;
+  margin-top: 50px;
   padding-left: 20px;
 
   @media (max-width: 768px) {
@@ -73,6 +73,7 @@ export const Button = styled.a`
   background-color: ${(props) => props.bgColor && props.bgColor};
   color: ${(props) => (props.color ? props.color : "#fff")};
   margin-left: ${(props) => props.ml && props.ml};
+  margin-right: ${(props) => props.mr && props.mr};
 
   &:hover {
     cursor: pointer;
