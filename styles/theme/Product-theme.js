@@ -5,10 +5,6 @@ export const Container = styled.li`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e1e1e1;
-
-  @media (max-width: 480px) {
-    flex-wrap: wrap;
-  }
 `
 export const ProductInformation = styled.div`
   display: flex;
@@ -17,9 +13,8 @@ export const ProductInformation = styled.div`
     flex-wrap: wrap;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 610px) {
     justify-content: center;
-    flex-wrap: wrap;
   }
 `
 
@@ -69,7 +64,7 @@ export const Comments = styled.div`
 
 export const CommentIcon = styled.img`
   width: 2rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
 `
 
 export const Votes = styled.div`
@@ -79,15 +74,13 @@ export const Votes = styled.div`
   align-items: center;
   text-align: center;
   width: 29%;
-  border: 1px solid red;
 
   @media (max-width: 700px) {
     width: 100%;
     justify-content: flex-start;
   }
 
-  @media (max-width: 480px) {
-    width: 100%;
+  @media (max-width: 610px) {
     justify-content: center;
   }
 
