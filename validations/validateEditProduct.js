@@ -2,7 +2,7 @@ const regExp = {
   url: /^(ftp|http|https):\/\/[^ "]+$/,
 }
 
-export default function validateCreateProduct(values) {
+export default function validateEditProduct(values) {
   const { name, company, url, description } = values
 
   let errors = {}
