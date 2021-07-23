@@ -102,14 +102,14 @@ export default function EditProduct() {
   return (
     <div>
       <SectionTitle>Editar Producto</SectionTitle>
-      <Form noValidate onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Información General</legend>
           <InputContainer>
-            <label htmlFor="new-product-name">Nombre</label>
+            <label htmlFor="edit-product-name">Nombre</label>
             <input
               type="text"
-              id="new-product-name"
+              id="edit-product-name"
               placeholder="Nombre del Producto"
               name="name"
               onChange={handleChange}
@@ -119,10 +119,10 @@ export default function EditProduct() {
           </InputContainer>
 
           <InputContainer>
-            <label htmlFor="new-product-company">Empresa</label>
+            <label htmlFor="edit-product-company">Empresa</label>
             <input
               type="text"
-              id="new-product-company"
+              id="edit-product-company"
               placeholder="Nombre de la Empresa"
               name="company"
               value={company}
@@ -132,10 +132,10 @@ export default function EditProduct() {
           </InputContainer>
 
           <InputContainer>
-            <label htmlFor="new-product-url">URL</label>
+            <label htmlFor="edit-product-url">URL</label>
             <input
               type="url"
-              id="new-product-url"
+              id="edit-product-url"
               placeholder="URL del Producto"
               name="url"
               value={url}
@@ -148,9 +148,9 @@ export default function EditProduct() {
         <fieldset>
           <legend>Sobre tu Producto</legend>
           <InputContainer>
-            <label htmlFor="new-product-description">Descripción</label>
+            <label htmlFor="edit-product-description">Descripción</label>
             <textarea
-              id="new-product-description"
+              id="edit-product-description"
               placeholder="Descripción del Producto"
               name="description"
               value={description}

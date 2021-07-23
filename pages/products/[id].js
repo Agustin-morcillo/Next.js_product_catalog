@@ -34,6 +34,7 @@ export default function Product() {
   })
   const [error, setError] = useState(false)
 
+  /* Context */
   const { firebase, user } = useContext(FirebaseContext)
 
   /* Getting product ID */
@@ -129,6 +130,28 @@ export default function Product() {
     return setcheckDB(true)
   }
 
+  /* Delete Product */
+  const deleteProduct = async () => {
+    const alert = await Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Un producto que se elimina no se puede recuperar",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    })
+    if (alert.isConfirmed) {
+      try {
+        await firebase.db.collection("products").doc(id).delete()
+        return router.push("/")
+      } catch (error) {
+        console.error("Hubo un error", error)
+      }
+    }
+  }
+
   /* Comments functions */
   const handleCommentChange = (e) => {
     setUserComment({
@@ -168,28 +191,6 @@ export default function Product() {
     return setUserComment({
       comment: "",
     })
-  }
-
-  /* Delete Product */
-  const deleteProduct = async () => {
-    const alert = await Swal.fire({
-      title: "¿Estas seguro?",
-      text: "Un producto que se elimina no se puede recuperar",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar",
-      cancelButtonText: "Cancelar",
-    })
-    if (alert.isConfirmed) {
-      try {
-        await firebase.db.collection("products").doc(id).delete()
-        return router.push("/")
-      } catch (error) {
-        console.error("Hubo un error", error)
-      }
-    }
   }
 
   return (
