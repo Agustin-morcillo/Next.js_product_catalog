@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react"
 import { useRouter } from "next/router"
 
 import FirebaseContext from "/firebase/context"
-import validateCreateProduct from "/validations/validateCreateProduct"
-import useFormValidation from "/hooks/useFormValidation"
+import validateEditProduct from "/validations/validateEditProduct"
 
 import { SectionTitle, LoadingText } from "/styles/globalStyle"
 import {
@@ -20,6 +19,9 @@ export default function EditProduct() {
   const [loading, setLoading] = useState(true)
   const [checkDB, setCheckDB] = useState(true)
   const [error, setError] = useState(false)
+  const [valuesError, setValuesError] = useState({})
+
+  const { name, company, url, description } = product
 
   const { user, firebase } = useContext(FirebaseContext)
 
@@ -52,23 +54,24 @@ export default function EditProduct() {
       getProduct()
     }
     // eslint-disable-next-line
-  }, [editProduct, product])
+  }, [editProduct])
 
-  const INITIAL_STATE = {
-    name: "",
-    company: "",
-    url: "",
-    description: "",
+  const handleChange = (e) => {
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value,
+    })
   }
 
-  const { values, errors, handleSubmit, handleChange } = useFormValidation(
-    INITAL_STATE,
-    validateCreateProduct,
-    editingProduct
-  )
-  const { name, company, url, description } = values
+  async function handleSubmit(e) {
+    e.preventDefault()
 
-  async function editingProduct() {
+    const validation = validateEditProduct(product)
+
+    if (Object.keys(validation).length > 0) {
+      return setValuesError(validation)
+    }
+
     try {
       await firebase.db
         .collection("products")
@@ -77,8 +80,6 @@ export default function EditProduct() {
     } catch (error) {
       console.error("Hubo un error", error)
     }
-
-    console.log("editando...")
 
     return router.push("/")
   }
@@ -110,9 +111,9 @@ export default function EditProduct() {
               placeholder="Nombre del Producto"
               name="name"
               onChange={handleChange}
-              value={values.name || product.name}
+              value={name}
             />
-            {errors.name && <Error>{errors.name}</Error>}
+            {valuesError.name && <Error>{valuesError.name}</Error>}
           </InputContainer>
 
           <InputContainer>
@@ -122,10 +123,10 @@ export default function EditProduct() {
               id="new-product-company"
               placeholder="Nombre de la Empresa"
               name="company"
-              value={values.company || product.company}
+              value={company}
               onChange={handleChange}
             />
-            {errors.company && <Error>{errors.company}</Error>}
+            {valuesError.company && <Error>{valuesError.company}</Error>}
           </InputContainer>
 
           <InputContainer>
@@ -135,10 +136,10 @@ export default function EditProduct() {
               id="new-product-url"
               placeholder="URL del Producto"
               name="url"
-              value={values.url || product.url}
+              value={url}
               onChange={handleChange}
             />
-            {errors.url && <Error>{errors.url}</Error>}
+            {valuesError.url && <Error>{valuesError.url}</Error>}
           </InputContainer>
         </fieldset>
 
@@ -150,10 +151,12 @@ export default function EditProduct() {
               id="new-product-description"
               placeholder="Descripción del Producto"
               name="description"
-              value={values.description || product.description}
+              value={description}
               onChange={handleChange}
             />
-            {errors.description && <Error>{errors.description}</Error>}
+            {valuesError.description && (
+              <Error>{valuesError.description}</Error>
+            )}
           </InputContainer>
         </fieldset>
 
