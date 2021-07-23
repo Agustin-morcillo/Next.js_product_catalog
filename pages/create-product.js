@@ -1,10 +1,11 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import Router from "next/router"
 import FileUploader from "react-firebase-file-uploader"
 
 import FirebaseContext from "/firebase/context"
 import validateCreateProduct from "/validations/validateCreateProduct"
 import useFormValidation from "/hooks/useFormValidation"
+import ImgUploader from "/config/fileUploader"
 
 import { SectionTitle } from "/styles/globalStyle"
 import {
@@ -16,40 +17,16 @@ import {
 import PageNotFound from "/components/layout/PageNotFound"
 
 export default function CreateProduct() {
-  const [imgName, setImgName] = useState("")
-  const [uploadingImg, setUploadingImg] = useState(false)
-  const [uploadingProgress, setUploadingProgress] = useState(0)
-  const [imgUrl, setImgUrl] = useState("")
-
-  /* Firebase img uploader functions */
-  const handleUploadStart = () => {
-    setUploadingProgress(0)
-    setUploadingImg(true)
-  }
-
-  const handleProgress = (progress) => {
-    setUploadingProgress(progress)
-  }
-
-  const handleUploadError = (error) => {
-    setUploadingImg(error)
-    console.log(error)
-  }
-
-  const handleUploadSuccess = (name) => {
-    setUploadingProgress(100)
-    setUploadingImg(false)
-    setImgName(name)
-    firebase.storage
-      .ref("products")
-      .child(name)
-      .getDownloadURL()
-      .then((url) => {
-        setImgUrl(url)
-      })
-  }
-
   const { user, firebase } = useContext(FirebaseContext)
+
+  /* Img controller */
+  const {
+    imgUrl,
+    handleUploadStart,
+    handleProgress,
+    handleUploadError,
+    handleUploadSuccess,
+  } = ImgUploader()
 
   const INITIAL_STATE = {
     name: "",
@@ -98,7 +75,7 @@ export default function CreateProduct() {
   return (
     <div>
       <SectionTitle>Nuevo Producto</SectionTitle>
-      <Form noValidate onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Información General</legend>
           <InputContainer>
@@ -131,6 +108,7 @@ export default function CreateProduct() {
             <label htmlFor="new-product-image">Imagen</label>
             <FileUploader
               accept="image/*"
+              required
               id="new-product-image"
               name="image"
               randomizeFilename

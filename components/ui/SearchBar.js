@@ -19,7 +19,9 @@ export default function SearchBar() {
       return
     }
 
-    router.push({
+    setUserSearch("")
+
+    return router.push({
       pathname: "/search",
       query: { q: userSearch },
     })
@@ -31,6 +33,7 @@ export default function SearchBar() {
         type="text"
         placeholder="Buscar Productos"
         onChange={(e) => setUserSearch(e.target.value.trim())}
+        value={userSearch || ""}
       />
       <SubmitButton type="submit"></SubmitButton>
     </SearchForm>

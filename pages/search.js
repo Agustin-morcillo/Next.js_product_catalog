@@ -20,12 +20,18 @@ export default function Search() {
   useEffect(() => {
     if (q) {
       const search = q.toLowerCase()
-      const filterProducts = products.filter((product) =>
-        product.name
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .includes(search)
+      const filterProducts = products.filter(
+        (product) =>
+          product.name
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(search) ||
+          product.description
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(search)
       )
       return setSearchedProducts(filterProducts)
     }

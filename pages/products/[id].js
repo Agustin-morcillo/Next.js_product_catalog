@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import Swal from "sweetalert2"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import { es } from "date-fns/locale"
 
@@ -33,6 +34,7 @@ export default function Product() {
   })
   const [error, setError] = useState(false)
 
+  /* Context */
   const { firebase, user } = useContext(FirebaseContext)
 
   /* Getting product ID */
@@ -128,6 +130,28 @@ export default function Product() {
     return setcheckDB(true)
   }
 
+  /* Delete Product */
+  const deleteProduct = async () => {
+    const alert = await Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Un producto que se elimina no se puede recuperar",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    })
+    if (alert.isConfirmed) {
+      try {
+        await firebase.db.collection("products").doc(id).delete()
+        return router.push("/")
+      } catch (error) {
+        console.error("Hubo un error", error)
+      }
+    }
+  }
+
   /* Comments functions */
   const handleCommentChange = (e) => {
     setUserComment({
@@ -169,16 +193,6 @@ export default function Product() {
     })
   }
 
-  /* Delete Product */
-  const deleteProduct = async () => {
-    try {
-      await firebase.db.collection("products").doc(id).delete()
-      return router.push("/")
-    } catch (error) {
-      console.error("Hubo un error", error)
-    }
-  }
-
   return (
     <SectionContainer>
       <ProductContainer>
@@ -215,19 +229,19 @@ export default function Product() {
 
           {user && productOwner(user.uid) && (
             <div className="action-btn">
-              <Button onClick={deleteProduct} bgColor="#ea0000" hover="#f34336">
-                Eliminar
-              </Button>
-
               <Link
                 href="/products/edit/[editProduct]"
                 as={`/products/edit/${id}`}
                 passHref
               >
-                <Button bgColor="#DA552F" ml="10px">
+                <Button bgColor="#DA552F" mr="10px">
                   Editar
                 </Button>
               </Link>
+
+              <Button onClick={deleteProduct} bgColor="#ea0000" hover="#f34336">
+                Eliminar
+              </Button>
             </div>
           )}
         </MainInfoContainer>
