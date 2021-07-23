@@ -17,6 +17,7 @@ import {
   ProductImage,
   ProductOwner,
   Button,
+  Description,
   CommentSection,
   CommentContainer,
 } from "/styles/theme/layout/[id]-theme"
@@ -199,7 +200,7 @@ export default function Product() {
             )}
           </aside>
 
-          <p>{description}</p>
+          <Description>{description}</Description>
 
           <p>
             <BoldText> Publicado hace:</BoldText>{" "}

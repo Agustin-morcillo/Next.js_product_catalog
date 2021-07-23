@@ -9,14 +9,22 @@ export default function useProducts(order) {
   const { firebase } = useContext(FirebaseContext)
 
   useEffect(() => {
-    const getProducts = () => {
-      firebase.db
-        .collection("products")
-        .orderBy(order, "desc")
-        .onSnapshot(handleSnapshot)
+    const productsQuery = firebase.db
+      .collection("products")
+      .orderBy(order, "desc")
+      .onSnapshot(handleSnapshot)
+
+    const unsubscribe = productsQuery
+
+    const getProducts = async () => {
+      await productsQuery
+      setLoading(true)
     }
-    setLoading(true)
     getProducts()
+
+    return () => {
+      unsubscribe()
+    }
 
     // eslint-disable-next-line
   }, [])

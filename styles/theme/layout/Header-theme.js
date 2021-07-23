@@ -50,6 +50,7 @@ export const UserActionHeader = styled.div`
   @media (max-width: 1000px) {
     position: absolute;
     top: 0;
+    margin-top: 10px;
   }
 
   @media (max-width: 700px) {
