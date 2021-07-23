@@ -16,6 +16,7 @@ import PageNotFound from "/components/layout/PageNotFound"
 
 export default function EditProduct() {
   const [product, setProduct] = useState({})
+  const [productOwner, setProductOwner] = useState(null)
   const [loading, setLoading] = useState(true)
   const [checkDB, setCheckDB] = useState(true)
   const [error, setError] = useState(false)
@@ -44,6 +45,7 @@ export default function EditProduct() {
             setLoading(false)
             return setCheckDB(false)
           }
+          setProductOwner(productData.data().createdBy.id)
           setProduct(productData.data())
           setLoading(false)
           return setCheckDB(false)
@@ -93,7 +95,7 @@ export default function EditProduct() {
     )
   }
 
-  if (!user || error) {
+  if (!user || user.uid !== productOwner || error) {
     return <PageNotFound message="No puedes acceder a esta página" />
   }
 

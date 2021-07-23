@@ -47,6 +47,7 @@ export const SubmitButton = styled.button`
   border: none;
   font-family: "PT Sans", sans-serif;
   font-weight: 700;
+  margin-bottom: 30px;
 
   &:hover {
     cursor: pointer;
