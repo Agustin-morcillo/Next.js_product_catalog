@@ -3,19 +3,23 @@ import styled from "styled-components"
 export const Container = styled.li`
   padding: 4rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e1e1e1;
 `
 export const ProductInformation = styled.div`
-  flex: 0 1 600px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  column-gap: 2rem;
+  display: flex;
+
+  @media (max-width: 700px) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 610px) {
+    justify-content: center;
+  }
 `
 
 export const Image = styled.img`
-  width: 200px;
+  width: 100%;
 `
 
 export const Name = styled.a`
@@ -60,14 +64,25 @@ export const Comments = styled.div`
 
 export const CommentIcon = styled.img`
   width: 2rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
 `
 
 export const Votes = styled.div`
-  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
   text-align: center;
-  border: 1px solid #e1e1e1;
-  padding: 1rem 3rem;
+  width: 29%;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 610px) {
+    justify-content: center;
+  }
 
   div {
     font-size: 2rem;

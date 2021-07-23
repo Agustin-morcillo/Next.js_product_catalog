@@ -1,3 +1,43 @@
+.img-container {
+  width: 200px;
+}
+
+.info-container {
+  width: 50%;
+  padding: 0 60px 0 20px;
+}
+
+.vote-box {
+  border: 1px solid #e1e1e1;
+  padding: 1rem 3rem;
+}
+
+@media (max-width: 768px) {
+  .info-container {
+    width: 60%;
+  }
+  .vote-box {
+    margin-left: 210px;
+  }
+}
+
+@media (max-width: 700px) {
+  .info-container {
+    width: 60%;
+    padding: 0 10px 0 10px;
+  }
+}
+
+@media (max-width: 610px) {
+  .info-container {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .vote-box {
+    margin: 0;
+  }
+}
+
 .bg-white {
   background-color: #fff;
 }

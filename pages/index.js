@@ -7,7 +7,7 @@ import Product from "/components/layout/Product"
 import Spinner from "/components/ui/Spinner"
 
 export default function Home() {
-  const { products, loading } = useProducts("createdBy")
+  const { products, loading } = useProducts("createdOn")
 
   return (
     <>

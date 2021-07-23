@@ -21,7 +21,11 @@ export default function Search() {
     if (q) {
       const search = q.toLowerCase()
       const filterProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(search)
+        product.name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(search)
       )
       return setSearchedProducts(filterProducts)
     }

@@ -20,10 +20,11 @@ export default function Product({ product }) {
   return (
     <Container>
       <ProductInformation>
-        <div>
+        <div className="img-container">
           <Image src={image} alt="" />
         </div>
-        <div>
+
+        <div className="info-container">
           <Link href="/products/[id]" as={`/products/${id}`} passHref>
             <Name>{name}</Name>
           </Link>
@@ -41,12 +42,14 @@ export default function Product({ product }) {
             {formatDistanceToNow(new Date(createdOn), { locale: es })}
           </p>
         </div>
-      </ProductInformation>
 
-      <Votes>
-        <div>&#9650;</div>
-        <p>{votes}</p>
-      </Votes>
+        <Votes>
+          <div className="vote-box">
+            <div>&#9650;</div>
+            <p>{votes}</p>
+          </div>
+        </Votes>
+      </ProductInformation>
     </Container>
   )
 }
