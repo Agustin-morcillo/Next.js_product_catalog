@@ -3,7 +3,7 @@ import Router from "next/router"
 import FileUploader from "react-firebase-file-uploader"
 
 import FirebaseContext from "/firebase/context"
-import validateCreateProduct from "/validations/validateCreateProduct"
+import validateProduct from "/validations/validateProduct"
 import useFormValidation from "/hooks/useFormValidation"
 import ImgUploader from "/config/fileUploader"
 
@@ -37,7 +37,7 @@ export default function CreateProduct() {
 
   const { values, errors, handleSubmit, handleChange } = useFormValidation(
     INITIAL_STATE,
-    validateCreateProduct,
+    validateProduct,
     createProduct
   )
   const { name, company, url, description } = values

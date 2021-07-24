@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react"
 import { useRouter } from "next/router"
 
 import FirebaseContext from "/firebase/context"
-import validateEditProduct from "/validations/validateEditProduct"
+import validateProduct from "/validations/validateProduct"
 
 import { SectionTitle, LoadingText } from "/styles/globalStyle"
 import {
@@ -68,7 +68,7 @@ export default function EditProduct() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const validation = validateEditProduct(product)
+    const validation = validateProduct(product)
 
     if (Object.keys(validation).length > 0) {
       return setValuesError(validation)

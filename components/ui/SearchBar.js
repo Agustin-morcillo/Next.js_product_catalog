@@ -19,12 +19,12 @@ export default function SearchBar() {
       return
     }
 
-    setUserSearch("")
-
-    return router.push({
+    router.push({
       pathname: "/search",
       query: { q: userSearch },
     })
+
+    return setUserSearch("")
   }
 
   return (
