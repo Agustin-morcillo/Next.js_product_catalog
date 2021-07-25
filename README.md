@@ -1,7 +1,7 @@
 # Next.js Catálogo de productos
 
 **Deployed**:
-[Next.js Catálogo de productos](https://next-js-product-page.vercel.app/)
+[Next.js Catálogo de productos](https://next-js-product-page.vercel.app/).
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
