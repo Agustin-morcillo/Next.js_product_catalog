@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Catálogo de productos
 
-## Getting Started
+**Deployed**:
+[Next.js Catálogo de productos](https://next-js-product-page.vercel.app/)
 
-First, run the development server:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with
+[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+A. **Español**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+B. **English**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## A. Español
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Catálogo productos utilizando Next.js.** Las distintas acciones en la página
+actualizan los registros de una base de datos de Firebase.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Incluye:**
 
-## Learn More
+- Registro y login de usuarios.
+- CRUD de productos.
+- Sección de comentarios y la posibilidad de votar los productos.
+- Ranking de los productos mas votados.
+- Barra de búsqueda de productos.
 
-To learn more about Next.js, take a look at the following resources:
+**Tecnologías utilizadas:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js**
+- **React Hooks & Custom Hooks**
+- **Firebase**
+- **Styled-components**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## B. English
 
-## Deploy on Vercel
+**Products catalog using Next.js.** All the actions on the page update the
+records of a Firebase database.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**It includes:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- User registration and login.
+- Products CRUD.
+- Comments section and the possibility to vote for the products.
+- Ranking of the most voted products.
+- Products search bar.
+
+**Used technologies:**
+
+- **Next.js**
+- **React Hooks & Custom Hooks**
+- **Firebase**
+- **Styled-components**
